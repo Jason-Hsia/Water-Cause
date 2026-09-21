@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="源析水智：面向流域、园区和城市河网的水质异常成因分析与污染源溯源决策平台。">
+  <title>源析水智 · 水质成因分析</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23062f38'/%3E%3Cpath d='M16 5c5 6 8 10 8 14a8 8 0 1 1-16 0c0-4 3-8 8-14Z' fill='%2358d6c5'/%3E%3Cpath d='M11 20c3 2 7 2 10 0' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <style>
+    :root{--ink:#10252a;--muted:#60767a;--line:#dce7e7;--paper:#f4f8f7;--card:#fff;--deep:#07323a;--deep2:#0c4248;--aqua:#50c9b6;--aqua2:#d9f4ee;--amber:#eea83b;--amber2:#fff3dc;--red:#d75d54;--red2:#fde9e6;--blue:#4f83cc;--shadow:0 14px 35px rgba(11,54,59,.08);font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;color:var(--ink);background:var(--paper)}
+    *{box-sizing:border-box}body{margin:0;min-width:320px}button,input,select{font:inherit}button{cursor:pointer}.app{display:grid;grid-template-columns:244px minmax(0,1fr);min-height:100vh}.sidebar{background:linear-gradient(165deg,var(--deep),#05262c);color:#eaf7f5;padding:26px 18px;display:flex;flex-direction:column;gap:30px}.brand{display:flex;gap:12px;align-items:center;padding:0 8px}.mark{width:38px;height:38px;border-radius:12px;background:var(--aqua);display:grid;place-items:center;color:var(--deep);font-weight:800}.brand strong{font-size:1.12rem}.brand small{display:block;color:#a9c8c8;margin-top:2px}.nav{display:grid;gap:7px}.nav button{border:0;border-radius:10px;background:transparent;color:#afd0cf;text-align:left;padding:12px 14px}.nav button.active{background:rgba(80,201,182,.16);color:white}.nav button span{float:right;color:#7fa7a6}.side-note{margin-top:auto;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px;color:#b9d0cf;line-height:1.55;font-size:.82rem}.side-note b{color:white;display:block;margin-bottom:5px}.main{padding:24px clamp(18px,3vw,42px) 42px;min-width:0}.topbar{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:22px}.title h1{margin:0;font-size:1.48rem;letter-spacing:-.02em}.title p{margin:5px 0 0;color:var(--muted);font-size:.88rem}.actions{display:flex;align-items:center;gap:10px}.status{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:.82rem}.dot{width:8px;height:8px;border-radius:50%;background:var(--aqua);box-shadow:0 0 0 4px rgba(80,201,182,.14)}.btn{border:1px solid var(--line);background:white;color:var(--ink);border-radius:10px;padding:9px 13px;min-height:40px}.btn:hover{border-color:#aec4c4}.btn.primary{background:var(--deep);border-color:var(--deep);color:white}.file{position:relative;overflow:hidden}.file input{position:absolute;inset:0;opacity:0;cursor:pointer}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:14px}.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 4px 14px rgba(11,54,59,.035)}.stat label{font-size:.78rem;color:var(--muted)}.stat .value{display:flex;align-items:baseline;gap:8px;margin-top:8px}.stat strong{font-size:1.62rem}.stat small{font-size:.75rem;color:var(--muted)}.stat .warn{color:var(--red)}.workspace{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(340px,.8fr);gap:14px}.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:17px 19px;border-bottom:1px solid var(--line)}.panel-head h2{font-size:1rem;margin:0}.panel-head p{margin:4px 0 0;font-size:.78rem;color:var(--muted)}.seg{display:flex;background:var(--paper);border-radius:8px;padding:3px}.seg button{border:0;background:transparent;color:var(--muted);padding:6px 9px;border-radius:6px;font-size:.75rem}.seg button.active{background:white;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.06)}.chart-wrap{padding:16px 18px 6px}.chart-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.75rem;color:var(--muted);margin-bottom:8px}.key:before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--aqua);margin-right:6px}.key.rain:before{background:var(--blue)}.key.limit:before{background:var(--red)}#chart{display:block;width:100%;height:245px}.events{border-top:1px solid var(--line)}.event-row{width:100%;display:grid;grid-template-columns:90px 1fr 84px 72px;gap:12px;align-items:center;border:0;border-bottom:1px solid var(--line);background:white;text-align:left;padding:13px 18px;color:inherit}.event-row:last-child{border-bottom:0}.event-row:hover,.event-row.active{background:#f3faf8}.time{font-size:.78rem;color:var(--muted)}.event-row strong{font-size:.88rem}.event-row p{margin:3px 0 0;font-size:.76rem;color:var(--muted)}.tag{justify-self:start;border-radius:999px;padding:4px 8px;font-size:.72rem;background:var(--amber2);color:#966316}.tag.high{background:var(--red2);color:#a83c35}.confidence{text-align:right;font-weight:700;font-size:.84rem}.detail{padding:18px}.event-title{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.event-title h2{font-size:1.08rem;margin:0}.event-title p{font-size:.78rem;color:var(--muted);margin:5px 0 0}.score-ring{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--aqua) 0 82%,var(--aqua2) 82%);position:relative;flex:0 0 auto}.score-ring:after{content:"";position:absolute;inset:6px;border-radius:50%;background:white}.score-ring b{z-index:1;font-size:.8rem}.section-title{font-size:.78rem;color:var(--muted);margin:20px 0 8px}.cause{padding:12px 0;border-top:1px solid var(--line)}.cause:first-of-type{border-top:0}.cause-top{display:flex;justify-content:space-between;font-size:.86rem}.cause-top b:last-child{color:var(--deep2)}.bar{height:6px;border-radius:6px;background:#edf2f1;margin:8px 0}.bar i{display:block;height:100%;border-radius:6px;background:var(--aqua)}.cause p{margin:0;color:var(--muted);font-size:.76rem;line-height:1.5}.evidence{display:grid;gap:8px}.evidence div{background:var(--paper);border-radius:10px;padding:10px 12px;font-size:.78rem;line-height:1.45}.evidence b{color:var(--deep2)}.recommend{background:var(--deep);color:white;border-radius:13px;padding:14px;margin-top:18px}.recommend label{display:block;color:#9fc7c5;font-size:.72rem;margin-bottom:6px}.recommend p{font-size:.82rem;line-height:1.55;margin:0}.detail-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.detail-actions .btn{width:100%}.notice{position:fixed;right:20px;bottom:20px;background:var(--deep);color:white;padding:11px 15px;border-radius:10px;box-shadow:var(--shadow);transform:translateY(90px);opacity:0;transition:.25s;z-index:4}.notice.show{transform:translateY(0);opacity:1}.empty{padding:60px 20px;text-align:center;color:var(--muted)}
+    @media(max-width:1050px){.app{grid-template-columns:76px 1fr}.sidebar{padding:23px 10px}.brand div:last-child,.nav button b,.nav button span,.side-note{display:none}.brand{padding:0;justify-content:center}.nav button{text-align:center;padding:12px 5px}.stats{grid-template-columns:repeat(2,1fr)}.workspace{grid-template-columns:1fr}.detail{display:grid;grid-template-columns:1fr 1fr;gap:0 22px}.event-title,.detail-actions,.recommend{grid-column:1/-1}}
+    @media(max-width:680px){.app{display:block}.sidebar{position:sticky;top:0;z-index:3;flex-direction:row;align-items:center;padding:10px 14px}.brand{margin-right:auto}.nav{display:flex}.nav button{width:42px}.nav button:nth-child(n+4){display:none}.main{padding:17px 13px 32px}.topbar{align-items:flex-start}.title p,.status{display:none}.actions .btn{padding:8px}.stats{grid-template-columns:1fr 1fr;gap:8px}.stat{padding:13px}.stat strong{font-size:1.35rem}.workspace{gap:10px}.event-row{grid-template-columns:72px 1fr 66px;padding:12px}.event-row .tag{display:none}.detail{display:block}.panel-head{align-items:flex-start;flex-direction:column}.seg{width:100%}.seg button{flex:1}.chart-wrap{padding:14px 8px 3px}#chart{height:210px}.detail-actions{grid-template-columns:1fr}.actions .file{max-width:90px;white-space:nowrap}.actions #resetBtn{display:none}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand"><div class="mark">水</div><div><strong>源析水智</strong><small>Water Cause AI</small></div></div>
+    <nav class="nav" aria-label="主导航">
+      <button class="active" aria-current="page">⌁ <b>事件研判</b><span>3</span></button>
+      <button>⌇ <b>水质态势</b></button>
+      <button>◎ <b>源库管理</b></button>
+      <button>◇ <b>核查闭环</b></button>
+      <button>⚙ <b>数据质量</b></button>
+    </nav>
+    <div class="side-note"><b>研判边界</b>模型给出候选成因和核查建议，不直接形成行政执法结论。</div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <div class="title"><h1>流域异常事件研判</h1><p id="subtitle">青浦示范河网 · 最近 24 小时 · 演示数据</p></div>
+      <div class="actions">
+        <span class="status"><i class="dot"></i>数据正常</span>
+        <button class="btn" id="templateBtn" title="下载包含 timestamp、station、tp、nh3n、cod、rainfall 字段的示例文件">CSV 模板</button>
+        <label class="btn file">导入 CSV<input id="csvInput" type="file" accept=".csv,text/csv" aria-label="导入水质 CSV 文件"></label>
+        <button class="btn" id="resetBtn">恢复演示</button>
+      </div>
+    </header>
+    <section class="stats" aria-label="流域摘要">
+      <article class="stat"><label>在线监测点</label><div class="value"><strong id="stationCount">24</strong><small>23 正常</small></div></article>
+      <article class="stat"><label>待研判事件</label><div class="value"><strong class="warn" id="eventCount">3</strong><small>1 个高风险</small></div></article>
+      <article class="stat"><label>数据完整率</label><div class="value"><strong>96.8%</strong><small>过去 24h</small></div></article>
+      <article class="stat"><label>平均研判耗时</label><div class="value"><strong>4.2</strong><small>分钟 / 事件</small></div></article>
+    </section>
+    <section class="workspace">
+      <div class="panel">
+        <div class="panel-head"><div><h2>关键指标与异常窗口</h2><p id="chartMeta">中心断面 W07 · 2026-09-21</p></div><div class="seg" role="group" aria-label="图表指标"><button class="active" data-metric="tp">总磷</button><button data-metric="nh3n">氨氮</button><button data-metric="cod">COD</button></div></div>
+        <div class="chart-wrap"><div class="chart-legend"><span class="key" id="metricLabel">总磷 mg/L</span><span class="key rain">降雨 mm</span><span class="key limit">参考阈值</span></div><svg id="chart" role="img" aria-label="过去二十四小时水质指标和降雨趋势"></svg></div>
+        <div class="events" id="eventList" aria-label="异常事件列表"></div>
+      </div>
+      <aside class="panel" aria-live="polite"><div class="detail" id="detail"></div></aside>
+    </section>
+  </main>
+</div>
+<div class="notice" id="notice" role="status"></div>
+<script>
+const demo = {
+  series: Array.from({length:24},(_,i)=>({hour:i,tp:+(0.17+Math.sin(i/3)*.018+(i>15&&i<20?(i-15)*.065:0)).toFixed(3),nh3n:+(0.48+Math.sin(i/2.4)*.07+(i>17?0.12:0)).toFixed(2),cod:+(13+Math.sin(i/2)*1.2+(i>15&&i<20?(i-15)*2.4:0)).toFixed(1),rain:i>13&&i<18?[2,6,14,10][i-14]:0})),
+  events:[
+    {id:'EV-0921-03',time:'18:40',site:'中心断面 W07',summary:'总磷与浊度同步快速上升',risk:'高风险',confidence:82,metric:'tp',causes:[['上游农业面源冲刷',62,'强降雨后传播时滞、颗粒态污染特征与历史事件一致'],['雨污混接或溢流',24,'降雨窗口匹配，但氨氮响应弱于典型生活污水'],['工业点源异常排放',9,'空间可达但排污指纹与事件不完全一致']],evidence:['16:00—18:00 上游累计降雨 32 mm','总磷与浊度相关系数 0.87','W03 → W07 水力传播时间约 2.3 小时'],action:'下一轮降雨开始后 60 分钟内，在北支沟、东圩沟和 W05 采集颗粒态磷、溶解态磷、悬浮物与浊度样品。'},
+    {id:'EV-0921-02',time:'03:20',site:'园区下游 W12',summary:'氨氮夜间阶跃式升高',risk:'中风险',confidence:76,metric:'nh3n',causes:[['污水管网混接或渗漏',51,'夜间低流量时浓度升高，氨氮与电导率同步响应'],['生活污水短时溢流',31,'污染指纹匹配，但缺少泵站液位记录'],['水体底泥释放',11,'温度与溶解氧变化不足以解释阶跃特征']],evidence:['02:40 起氨氮在 40 分钟内上升 68%','同期无降雨且上游断面保持稳定','下游电导率同步增加 13%'],action:'优先核查园区东侧管网液位和 2 号泵站运行记录，并在 YP-06、YP-09 排口补采氨氮与电导率。'},
+    {id:'EV-0920-07',time:'昨天 21:10',site:'入湖口 W19',summary:'COD 持续偏离季节基线',risk:'中风险',confidence:69,metric:'cod',causes:[['城镇生活源累积输入',45,'日变化周期和上下游增量均符合生活源特征'],['水生植物腐解',29,'季节与水温条件匹配，需增加 DOC 光谱证据'],['小型食品加工点源',17,'历史曾有相似事件，但当前企业工况未知']],evidence:['连续 9 小时高于近 30 日同小时基线','W15—W19 COD 净增量 4.8 mg/L','高锰酸盐指数同步升高'],action:'在 W15、支流 S4、W19 做上下游同步采样，并核查沿线食品加工企业当天生产与污水处理记录。'}
+  ]
+};
+let model=structuredClone(demo), activeId=model.events[0].id, metric='tp';
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+function niceMetric(m){return {tp:['总磷','mg/L',.3],nh3n:['氨氮','mg/L',1],cod:['COD','mg/L',20]}[m]}
+function renderChart(){
+  const svg=$('#chart'), box=svg.getBoundingClientRect(), w=Math.max(320,box.width),h=box.height||245,p={l:42,r:16,t:16,b:30}; svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+  const vals=model.series.map(d=>d[metric]), rains=model.series.map(d=>d.rain||0), max=Math.max(...vals,niceMetric(metric)[2])*1.2, rainMax=Math.max(...rains,1), x=i=>p.l+i*(w-p.l-p.r)/(vals.length-1), y=v=>h-p.b-v*(h-p.t-p.b)/max;
+  let out=`<rect x="${p.l}" y="${p.t}" width="${w-p.l-p.r}" height="${h-p.t-p.b}" rx="8" fill="#f8fbfa"/>`;
+  for(let i=0;i<5;i++){const yy=p.t+i*(h-p.t-p.b)/4,v=(max*(4-i)/4).toFixed(metric==='cod'?0:2);out+=`<line x1="${p.l}" y1="${yy}" x2="${w-p.r}" y2="${yy}" stroke="#dfe9e7"/><text x="${p.l-8}" y="${yy+4}" text-anchor="end" font-size="11" fill="#718487">${v}</text>`}
+  rains.forEach((v,i)=>{if(v)out+=`<rect x="${x(i)-5}" y="${h-p.b-v*(h-p.t-p.b)*.42/rainMax}" width="10" height="${v*(h-p.t-p.b)*.42/rainMax}" fill="#4f83cc" opacity=".22"/>`});
+  const limit=niceMetric(metric)[2];out+=`<line x1="${p.l}" y1="${y(limit)}" x2="${w-p.r}" y2="${y(limit)}" stroke="#d75d54" stroke-dasharray="5 5"/>`;
+  const pts=vals.map((v,i)=>`${x(i)},${y(v)}`).join(' ');out+=`<polyline points="${pts}" fill="none" stroke="#168b7c" stroke-width="3" stroke-linejoin="round"/>`;
+  vals.forEach((v,i)=>{if(i%3===0||v>limit)out+=`<circle cx="${x(i)}" cy="${y(v)}" r="${v>limit?4:2.5}" fill="${v>limit?'#d75d54':'#168b7c'}"><title>${i}:00 · ${v} ${niceMetric(metric)[1]}</title></circle>`});
+  [0,6,12,18,23].forEach(i=>out+=`<text x="${x(i)}" y="${h-9}" text-anchor="middle" font-size="11" fill="#718487">${String(i).padStart(2,'0')}:00</text>`);svg.innerHTML=out;$('#metricLabel').textContent=`${niceMetric(metric)[0]} ${niceMetric(metric)[1]}`;
+}
+function renderEvents(){
+  $('#eventList').innerHTML=model.events.length?model.events.map(e=>`<button class="event-row ${e.id===activeId?'active':''}" data-id="${e.id}"><span class="time">${e.time}</span><span><strong>${e.site}</strong><p>${e.summary}</p></span><span class="tag ${e.risk==='高风险'?'high':''}">${e.risk}</span><span class="confidence">${e.confidence}%</span></button>`).join(''):'<div class="empty">未检测到明显异常事件</div>';
+  $$('.event-row').forEach(b=>b.addEventListener('click',()=>{activeId=b.dataset.id;const e=model.events.find(x=>x.id===activeId);metric=e.metric;syncMetric();renderAll()}));
+}
+function renderDetail(){
+  const e=model.events.find(x=>x.id===activeId);if(!e){$('#detail').innerHTML='<div class="empty">请选择异常事件</div>';return}
+  const verified=JSON.parse(localStorage.getItem('verifiedEvents')||'[]').includes(e.id);
+  $('#detail').innerHTML=`<div class="event-title"><div><h2>${e.summary}</h2><p>${e.id} · ${e.site} · ${e.time}</p></div><div class="score-ring"><b>${e.confidence}%</b></div></div><div class="section-title">候选成因排序</div>${e.causes.map(c=>`<div class="cause"><div class="cause-top"><b>${c[0]}</b><b>${c[1]}%</b></div><div class="bar"><i style="width:${c[1]}%"></i></div><p>${c[2]}</p></div>`).join('')}<div class="section-title">关键证据</div><div class="evidence">${e.evidence.map((x,i)=>`<div><b>${i+1}</b>　${x}</div>`).join('')}</div><div class="recommend"><label>建议核查动作</label><p>${e.action}</p></div><div class="detail-actions"><button class="btn primary" id="verifyBtn">${verified?'已完成现场核查':'标记为已核查'}</button><button class="btn" id="reportBtn">导出事件报告</button></div>`;
+  $('#verifyBtn').onclick=()=>{let ids=JSON.parse(localStorage.getItem('verifiedEvents')||'[]');if(!ids.includes(e.id))ids.push(e.id);localStorage.setItem('verifiedEvents',JSON.stringify(ids));toast('核查状态已保存到本机');renderDetail()};
+  $('#reportBtn').onclick=()=>downloadReport(e);
+}
+function renderAll(){renderEvents();renderDetail();renderChart();$('#eventCount').textContent=model.events.length}
+function syncMetric(){$$('.seg button').forEach(b=>b.classList.toggle('active',b.dataset.metric===metric))}
+function toast(s){const n=$('#notice');n.textContent=s;n.classList.add('show');setTimeout(()=>n.classList.remove('show'),2200)}
+function downloadReport(e){const txt=`源析水智 · 水质异常研判报告\n\n事件：${e.id}\n点位：${e.site}\n时间：${e.time}\n异常：${e.summary}\n综合置信度：${e.confidence}%\n\n候选成因\n${e.causes.map((c,i)=>`${i+1}. ${c[0]}（${c[1]}%）\n   ${c[2]}`).join('\n')}\n\n关键证据\n${e.evidence.map((x,i)=>`${i+1}. ${x}`).join('\n')}\n\n建议核查动作\n${e.action}\n\n说明：本报告为辅助研判结果，不能替代规范监测、现场检查或行政执法证据。`;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'text/plain;charset=utf-8'}));a.download=`${e.id}-研判报告.txt`;a.click();URL.revokeObjectURL(a.href)}
+function parseCSV(text){
+  const rows=text.trim().split(/\r?\n/).map(r=>r.split(',').map(x=>x.trim()));if(rows.length<3)throw Error('至少需要两行数据');const head=rows.shift().map(x=>x.toLowerCase());const req=['timestamp','tp','nh3n','cod'];req.forEach(k=>{if(!head.includes(k))throw Error(`缺少字段 ${k}`)});
+  const data=rows.map(r=>Object.fromEntries(head.map((k,i)=>[k,r[i]]))).map((d,i)=>({hour:i,tp:+d.tp,nh3n:+d.nh3n,cod:+d.cod,rain:+(d.rainfall||d.rain||0),station:d.station||'导入断面'})).filter(d=>Number.isFinite(d.tp)&&Number.isFinite(d.nh3n)&&Number.isFinite(d.cod));if(data.length<2)throw Error('有效数据不足');
+  const defs={tp:['总磷异常升高',.3],nh3n:['氨氮异常升高',1],cod:['COD 异常升高',20]}, events=[];Object.entries(defs).forEach(([k,[label,limit]],i)=>{const peak=Math.max(...data.map(d=>d[k]));if(peak>limit)events.push({id:`CSV-${String(i+1).padStart(2,'0')}`,time:'导入数据',site:data[0].station,summary:label,risk:peak>limit*1.5?'高风险':'中风险',confidence:Math.min(91,Math.round(60+20*(peak/limit-1))),metric:k,causes:[['需结合源清单进一步研判',55,'指标超过参考阈值，当前导入数据缺少排污口和水文空间关系'],['监测设备或采样异常',23,'需要通过邻近点位和设备质控记录排除'],['自然过程扰动',14,'需补充降雨、流量、水温和溶解氧数据']],evidence:[`${niceMetric(k)[0]}峰值 ${peak} ${niceMetric(k)[1]}`,`参考阈值 ${limit} ${niceMetric(k)[1]}`,`共导入 ${data.length} 条有效记录`],action:'补充点位坐标、上下游关系、降雨流量和潜在污染源台账后重新研判；同时复核峰值时段的设备质控记录。'})});return {series:data.slice(-24),events}
+}
+$('#csvInput').addEventListener('change',async e=>{try{model=parseCSV(await e.target.files[0].text());activeId=model.events[0]?.id;metric=model.events[0]?.metric||'tp';$('#subtitle').textContent=`本地 CSV · ${model.series.length} 条记录 · 未上传服务器`;$('#stationCount').textContent=new Set(model.series.map(x=>x.station)).size;syncMetric();renderAll();toast(`已识别 ${model.events.length} 个异常事件`)}catch(err){toast(`导入失败：${err.message}`)}finally{e.target.value=''}});
+$('#templateBtn').onclick=()=>{const rows=['timestamp,station,tp,nh3n,cod,rainfall','2026-09-21 16:00,W07,0.18,0.51,13.2,2','2026-09-21 17:00,W07,0.24,0.55,15.1,14','2026-09-21 18:00,W07,0.38,0.59,21.6,10'];const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([rows.join('\n')],{type:'text/csv;charset=utf-8'}));a.download='water-quality-template.csv';a.click();URL.revokeObjectURL(a.href)};
+$('#resetBtn').onclick=()=>{model=structuredClone(demo);activeId=model.events[0].id;metric='tp';$('#subtitle').textContent='青浦示范河网 · 最近 24 小时 · 演示数据';$('#stationCount').textContent='24';syncMetric();renderAll();toast('已恢复演示数据')};
+$$('.seg button').forEach(b=>b.onclick=()=>{metric=b.dataset.metric;syncMetric();renderChart()});
+window.addEventListener('resize',renderChart);renderAll();
+(function registerTools(){const mc=document.modelContext;if(!mc?.registerTool)return;try{mc.registerTool({name:'read_water_quality_event',title:'读取水质事件研判',description:'按事件编号读取候选成因、证据和现场核查建议。',inputSchema:{type:'object',properties:{eventId:{type:'string'}},required:['eventId'],additionalProperties:false},annotations:{readOnlyHint:true,untrustedContentHint:false},execute({eventId}){const e=model.events.find(x=>x.id===eventId);if(!e)throw Error('未找到事件');return {id:e.id,site:e.site,summary:e.summary,confidence:e.confidence,causes:e.causes,evidence:e.evidence,recommendedAction:e.action}}})}catch{}})();
+</script>
+</body>
+</html>
